@@ -1,5 +1,7 @@
 ---
 
+
+
 # Configure app systemd service and nginx
 
 - name: template systemd service config
@@ -23,10 +25,14 @@
   become: yes
 # - command: mv /etc/nginx/sites-enabled/default /tmp/nginx.sites-enabled.default
 
+- name: remove default nginx site config
+  file: path=/etc/nginx/sites-available/default state=absent
+  become: yes
+
 - name: enable nginx site
   file:
     src: /etc/nginx/sites-available/{{ app_name }}
-    dest: /etc/nginx/sites-enabled/default
+    dest: /etc/nginx/sites-enabled/{{ app_name }}
     state: link
     force: yes
   become: yes
@@ -45,8 +51,9 @@
 
 - name: get url
   get_url:
-    url: http://{{inventory_hostname}}
+    url: http://192.168.33.11 #{{inventory_hostname}}
     dest: /tmp/index.html
+  become: true
 
 - name: read html
   shell: cat /tmp/index.html
