@@ -1,0 +1,5 @@
+venv_path: ../venv
+requirements_path: ../requirements.txt
+app_name: flask_app_ansible_deploy
+ansible_ssh_user: andra
+github_user: dummy-andra
