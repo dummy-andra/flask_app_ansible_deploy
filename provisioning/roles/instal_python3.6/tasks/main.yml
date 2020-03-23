@@ -52,5 +52,5 @@
 - name: install modules in a virtualenv
   pip:
     requirements: /home/{{ ansible_ssh_user }}/{{ app_name }}/provisioning/requirements.txt
-    virtualenv: /home/{{ ansible_ssh_user }}/{{ app_name }}/provisioning/env
+    virtualenv: /home/{{ ansible_ssh_user }}/{{ app_name }}/env
     virtualenv_python: python3
