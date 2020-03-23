@@ -15,10 +15,14 @@
     update_cache: yes
   become: yes
 
-# - name: Install 'virtualenv' package
-#   pip:
-#     name: virtualenv
-#     executable: pip3
+- name: Install virtualenv via pip
+  pip:
+    name: virtualenv
+    executable: pip3
+  become: yes
+  become_user: root
+
+
 
 # Install system apt packages
 
@@ -53,4 +57,8 @@
   pip:
     requirements: /home/{{ ansible_ssh_user }}/{{ app_name }}/provisioning/requirements.txt
     virtualenv: /home/{{ ansible_ssh_user }}/{{ app_name }}/env
-    virtualenv_python: python3
+    virtualenv_python: python3.5
+  tags:
+    - venv
+
+  
